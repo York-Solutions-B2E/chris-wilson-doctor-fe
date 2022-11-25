@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {FormControl, FormGroup, Validators, ReactiveFormsModule} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LoggerServices } from 'src/app/services/Logger';
 
 
 
@@ -22,7 +23,10 @@ export class RegisterComponent {
     email: new FormControl("", Validators.email),
   })
 
-  constructor(private router: Router){}
+  constructor(
+    private router: Router, 
+    private logger: LoggerServices
+    ){}
 
   get username(): any {
     return this.registrationForm.get('username');
@@ -33,7 +37,7 @@ export class RegisterComponent {
   }
 
   onSubmit(){
-    
+    this.logger.log("New user attempting to register"); 
     let username = this.registrationForm.get("username");
     let password = this.registrationForm.get("password"); 
 
@@ -53,8 +57,9 @@ export class RegisterComponent {
 
     if(username && username.valid && password && password.valid){
 
-      console.log("everything is valid");
-      
+      this.logger.log(`${this.username.value} has created a new user account`)
+
+      //redirect to the login page
       this.router.navigate(["/login"]); 
       
     }

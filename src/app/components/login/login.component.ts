@@ -1,7 +1,13 @@
 import { Component } from '@angular/core';
-import {FormControl, FormGroup, Validators, ReactiveFormsModule} from '@angular/forms';
+import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
+import { User } from 'src/app/models/User';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { LoggerServices } from 'src/app/services/Logger';
+import { MessageService } from 'src/app/services/message.service';
+
+
 
 @Component({
   selector: 'app-login',
@@ -10,17 +16,23 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 })
 export class LoginComponent {
 
+   
+  submitted: boolean = false; //indicate when waiting for server to respond
+  error: boolean = false;     //show error message if there was an error
+
   loginForm: FormGroup = new FormGroup({
-    username: new FormControl("", Validators.minLength(5)), 
+    username: new FormControl(""),
     password: new FormControl("")
-  }); 
+  });
 
   constructor(
     //private route: ActivatedRoute,
     //private router: Router,
-    private authenticationService: AuthenticationService
-  ){
-    console.log(this.loginForm.get("username")); 
+    private authenticationService: AuthenticationService,
+    private logger: LoggerServices,
+    private msg: MessageService
+  ) {
+
   }
 
 
@@ -31,10 +43,24 @@ export class LoginComponent {
 
 
 
-  onSubmit():void{
+  onSubmit(): void {
+    this.submitted = true;
 
-    console.log(this.username.value); 
+    //console.log(this.username.value); 
 
-    this.authenticationService.login("username", "password"); 
+    this.authenticationService.login("gravy", "1234567").subscribe({
+      next: data => {
+        //user logged in 
+        console.log(data);
+      },
+
+      error: error => {
+        //there was an error 
+        console.log("there was an error " + error)
+        this.msg.message("There Was An Error")
+        this.logger.log(error);
+      }
+    });
+
   }
 }

@@ -1,5 +1,5 @@
 export class LoggerServices{
-    logs: Message[] = [];
+    private logs: Message[] = [];
 
 
     constructor(){

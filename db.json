@@ -1,9 +1,12 @@
 {
-    "posts": [
-      { "id": 1, "title": "json-server", "author": "typicode" }
+    "users": [
+      { "id": 1, "username": "gravy", "password": "123456", "firstName": "Chris", "lastName": "Wilson" },
+      { "id": 4, "username": "bobby", "password": "123456", "firstName": "Chris", "lastName": "Wilson" },
+      { "id": 3, "username": "sally", "password": "123456", "firstName": "Chris", "lastName": "Wilson" },
+      { "id": 2, "username": "tester", "password": "123456", "firstName": "Chris", "lastName": "Wilson" }
     ],
-    "comments": [
-      { "id": 1, "body": "some comment", "postId": 1 }
-    ],
+    "comments": {
+      
+    },
     "profile": { "name": "typicode" }
   }

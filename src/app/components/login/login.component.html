@@ -6,6 +6,9 @@
       <input formControlName="username" placeholder="Username">
       <input formControlName="password" placeholder="Password">
 
-      <button type="submit">Submit</button>
+      <button [disabled]="submitted" type="submit">
+        <span *ngIf="submitted"> Spinning thing</span>
+        Submit
+      </button>
       <a routerLink="/register" class="btn btn-link">Register</a>
 </form>
