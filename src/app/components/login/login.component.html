@@ -1,1 +1,11 @@
-<p>login works!</p>
+<h3>Login</h3>
+
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div *ngIf="username.invalid"> Name is too short. </div>
+
+      <input formControlName="username" placeholder="Username">
+      <input formControlName="password" placeholder="Password">
+
+      <button type="submit">Submit</button>
+      <a routerLink="/register" class="btn btn-link">Register</a>
+</form>

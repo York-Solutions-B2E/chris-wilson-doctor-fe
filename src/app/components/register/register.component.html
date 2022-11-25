@@ -1,0 +1,20 @@
+<h3>Register</h3>
+
+
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <div *ngIf="userNameTooShort">Name is too short</div>
+
+    <label for="usernameInput">Username: </label>
+    <input id="usernameInput" formControlName="username"/>
+
+    <div *ngIf="passwordTooShort">Your password is too short</div>
+    <label for="passwordInput">Password: </label>
+    <input type="password" id="passwordInput" formControlName="password"/>
+
+    <label for="emailInput">Email: </label>
+    <input type="email" id="emailInput" formControlName="email">
+
+    <button type="submit">Register</button>
+    <a routerLink="/login" class="btn btn-link">Cancel</a>
+
+</form>
