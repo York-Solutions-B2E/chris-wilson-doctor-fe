@@ -37,7 +37,8 @@ export class HomeComponent {
         res => console.log(res)
       )
 
-    
-    
+      drServices.createAvailableTime(this.user, Date.now(), Date.now() + (1000*60*60), 1).subscribe( res => {
+        
+      })
   }
 }

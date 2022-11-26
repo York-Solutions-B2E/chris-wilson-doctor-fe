@@ -7,7 +7,7 @@
       "firstName": "Chris",
       "lastName": "Wilson",
       "role": "admin",
-      "lastLogin": "2022-11-26T03:16:09.838Z"
+      "lastLogin": "2022-11-26T08:39:40.627Z"
     },
     {
       "id": 1,
@@ -16,7 +16,7 @@
       "firstName": "Bobby",
       "lastName": "Wilson",
       "role": "doctor",
-      "lastLogin": "2022-11-26T03:40:58.331Z"
+      "lastLogin": "2022-11-26T08:39:55.683Z"
     },
     {
       "id": 2,
@@ -25,7 +25,7 @@
       "firstName": "Sally",
       "lastName": "Wilson",
       "role": "patient",
-      "lastLogin": "2022-11-26T03:15:51.972Z"
+      "lastLogin": "2022-11-26T08:39:45.611Z"
     },
     {
       "id": 3,
@@ -44,7 +44,7 @@
       "lastLogin": null
     }
   ],
-  "da": [
+  "docAvailability": [
     {
       "id": 1,
       "doctorID": 1,
@@ -65,6 +65,34 @@
       "start": "",
       "end": "",
       "room": 1
+    },
+    {
+      "doctorID": 1,
+      "start": 1669452832627,
+      "end": 1669456432627,
+      "room": 1,
+      "id": 4
+    },
+    {
+      "doctorID": 1,
+      "start": 1669452917713,
+      "end": 1669456517713,
+      "room": 1,
+      "id": 5
+    },
+    {
+      "doctorID": 1,
+      "start": 1669452983973,
+      "end": 1669456583973,
+      "room": 1,
+      "id": 6
+    },
+    {
+      "doctorID": 1,
+      "start": 1669453035030,
+      "end": 1669456635030,
+      "room": 1,
+      "id": 7
     }
   ],
   "rooms": [

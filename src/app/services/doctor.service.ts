@@ -23,11 +23,11 @@ export class DoctorService {
     let observer = new Subject();
 
     //this took forever to figure out... :(
-    this.http.get<DrAvailibilityObj[]>(`${this.baseURL}/da`).subscribe( res => {
+    this.http.get<DrAvailibilityObj[]>(`${this.baseURL}/docAvailability`).subscribe( res => {
       let results:DrAvailibilityObj[] = []; 
 
       res.forEach(x => {
-        if(x.doctorID ===1){
+        if(x.doctorID === doctor.id){
           results.push(x); 
         }
       })
@@ -38,4 +38,28 @@ export class DoctorService {
     return observer
 
   }
+
+  createAvailableTime(doctor: User, startTime:number, endTime:number, room:number){
+
+    let observer = new Subject();
+
+    this.http.post<any>(`${this.baseURL}/docAvailability`, {
+      doctorID: doctor.id,
+      start: startTime,
+      end: endTime,
+      room: room
+    }).subscribe({
+      next: res => {
+        observer.next(true); 
+      }, 
+      error: err => {
+        this.msg.error(err.message); 
+        this.logger.log(err.message); 
+        observer.next(false); 
+      }
+    })
+
+    return observer; 
+  }
+
 }

@@ -15,16 +15,16 @@ export class AuthenticationService {
     private http: HttpClient,
     private logger: LoggerServices
   ) {
-    let userInfo; 
+    let userInfo;
     //if there is an error parsing the data from the sessionStorage it breaks everything 
-    try{
+    try {
       userInfo = JSON.parse(sessionStorage.getItem('currentUser') as string);
-    }catch (err){
+    } catch (err) {
       this.logger.log("Error parsing data in sessionStorage")
       sessionStorage.removeItem("currentUser");
-      sessionStorage.removeItem("token"); 
+      sessionStorage.removeItem("token");
     }
-    
+
 
 
     this.currentUserSubject = new BehaviorSubject<User>(userInfo);
@@ -34,9 +34,6 @@ export class AuthenticationService {
 
 
   login(username: string, password: string) {
-    
-    console.log(username, password)//////////////////////////////////////////////////////////
-    
     this.logger.log(`a ${username} is attempting to sign in`)
 
 
@@ -44,14 +41,14 @@ export class AuthenticationService {
     return this.http.get<User[]>(`http://localhost:3000/users?username=${username}`).pipe(
       map(
         user => {
-          
+
           if (user[0].password === password) {
             //log user in
             //I'm assuming login service would provide a token 
 
-            this.logger.log(`${username} logged in`); 
+            this.logger.log(`${username} logged in`);
             sessionStorage.setItem("currentUser", JSON.stringify(user[0]));
-            sessionStorage.setItem("token", "JWTFromServer"); 
+            sessionStorage.setItem("token", "JWTFromServer");
 
             this.currentUserSubject.next(user[0])
 
@@ -69,21 +66,21 @@ export class AuthenticationService {
     this.logger.print();
   }
 
-  checkIfUserLoggedIn(){
-    if(sessionStorage.getItem("currentUser") && sessionStorage.getItem("token")){
-      
+  checkIfUserLoggedIn() {
+    if (sessionStorage.getItem("currentUser") && sessionStorage.getItem("token")) {
+
     }
   }
 
   logOut(): void {
 
-    if(this.currentUserSubject && this.currentUserSubject.value){
-      this.logger.log(`${this.currentUserSubject.value.username} logged out`); 
+    if (this.currentUserSubject && this.currentUserSubject.value) {
+      this.logger.log(`${this.currentUserSubject.value.username} logged out`);
     }
-    
+
     sessionStorage.removeItem("currentUser");
     sessionStorage.removeItem("token");
-    this.currentUserSubject.next(null); 
+    this.currentUserSubject.next(null);
 
   }
 
