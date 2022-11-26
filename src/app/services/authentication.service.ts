@@ -63,7 +63,7 @@ export class AuthenticationService {
       )
     )
 
-    this.logger.print();
+    //this.logger.print();
   }
 
   checkIfUserLoggedIn() {

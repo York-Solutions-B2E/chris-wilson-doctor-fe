@@ -19,16 +19,18 @@ export class DoctorService {
     private msg: MessageService
   ) { }
 
+  
+
   getAvailableTimes(doctor: User): Subject<any> {
     let observer = new Subject();
 
     //this took forever to figure out... :(
-    this.http.get<DrAvailibilityObj[]>(`${this.baseURL}/docAvailability`).subscribe( res => {
-      let results:DrAvailibilityObj[] = []; 
+    this.http.get<DrAvailibilityObj[]>(`${this.baseURL}/docAvailability`).subscribe(res => {
+      let results: DrAvailibilityObj[] = [];
 
       res.forEach(x => {
-        if(x.doctorID === doctor.id){
-          results.push(x); 
+        if (x.doctorID === doctor.id) {
+          results.push(x);
         }
       })
 
@@ -39,27 +41,34 @@ export class DoctorService {
 
   }
 
-  createAvailableTime(doctor: User, startTime:number, endTime:number, room:number){
+  createAvailableTime(doctor: User, startTime: string, room: number) {
 
     let observer = new Subject();
+
+   
 
     this.http.post<any>(`${this.baseURL}/docAvailability`, {
       doctorID: doctor.id,
       start: startTime,
-      end: endTime,
       room: room
     }).subscribe({
       next: res => {
-        observer.next(true); 
-      }, 
+         
+        observer.next(res as User);
+      },
       error: err => {
-        this.msg.error(err.message); 
-        this.logger.log(err.message); 
-        observer.next(false); 
+        this.msg.error(err.message);
+        this.logger.log(err.message);
+        observer.next(false);
       }
     })
 
-    return observer; 
+    return observer;
+  }
+
+
+  deleteAvailableTime(doctor: User, avil: DrAvailibilityObj){
+
   }
 
 }

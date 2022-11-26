@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit{
     this.authenticationService.login(username, password).subscribe({
       next: user => {
         //user logged in 
-          user.lastLogin = new Date(); 
+          user.lastLogin = Date(); 
           this.userService.updateUser(user).subscribe(
             response => {
               //user was authenticated 

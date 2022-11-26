@@ -5,5 +5,5 @@ export class User {
     firstName: string = "";
     lastName: string = "";
     role: string = "guest";
-    lastLogin: Date = new Date(); 
+    lastLogin: string = "" 
 }

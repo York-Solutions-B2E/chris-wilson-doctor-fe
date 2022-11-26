@@ -16,7 +16,7 @@
       "firstName": "Bobby",
       "lastName": "Wilson",
       "role": "doctor",
-      "lastLogin": "2022-11-26T08:39:55.683Z"
+      "lastLogin": "Sat Nov 26 2022 12:41:22 GMT-0700 (Mountain Standard Time)"
     },
     {
       "id": 2,
@@ -49,50 +49,49 @@
       "id": 1,
       "doctorID": 1,
       "start": "",
-      "end": "",
       "room": 1
     },
     {
       "id": 2,
       "doctorID": 1,
       "start": "",
-      "end": "",
-      "room": 1
-    },
-    {
-      "id": 3,
-      "doctorID": 2,
-      "start": "",
-      "end": "",
       "room": 1
     },
     {
       "doctorID": 1,
-      "start": 1669452832627,
-      "end": 1669456432627,
+      "start": "Sat Nov 26 2022 12:37:59 GMT-0700 (Mountain Standard Time)",
+      "room": 1,
+      "id": 3
+    },
+    {
+      "doctorID": 1,
+      "start": "Sat Nov 26 2022 12:38:06 GMT-0700 (Mountain Standard Time)",
       "room": 1,
       "id": 4
     },
     {
       "doctorID": 1,
-      "start": 1669452917713,
-      "end": 1669456517713,
+      "start": "Sat Nov 26 2022 12:41:10 GMT-0700 (Mountain Standard Time)",
       "room": 1,
       "id": 5
     },
     {
       "doctorID": 1,
-      "start": 1669452983973,
-      "end": 1669456583973,
+      "start": "Sat Nov 26 2022 12:41:22 GMT-0700 (Mountain Standard Time)",
       "room": 1,
       "id": 6
     },
     {
       "doctorID": 1,
-      "start": 1669453035030,
-      "end": 1669456635030,
+      "start": "Sat Nov 26 2022 12:44:29 GMT-0700 (Mountain Standard Time)",
       "room": 1,
       "id": 7
+    },
+    {
+      "doctorID": 1,
+      "start": "Sat Nov 26 2022 12:46:43 GMT-0700 (Mountain Standard Time)",
+      "room": 1,
+      "id": 8
     }
   ],
   "rooms": [
@@ -105,7 +104,48 @@
       "number": 101
     }
   ],
-  "profile": {
-    "name": "typicode"
-  }
+  "appointments": [
+    {
+      "id": 1,
+      "doctorID": 1,
+      "patientID": 1,
+      "timeSlot": 1,
+      "status": "cancelled"
+    },
+    {
+      "doctorID": 1,
+      "patientID": 2,
+      "timeSlot": 1,
+      "status": "pending",
+      "id": 2
+    },
+    {
+      "doctorID": 1,
+      "patientID": 1,
+      "timeSlot": 1,
+      "status": "confirmed",
+      "id": 4
+    },
+    {
+      "doctorID": 1,
+      "patientID": 1,
+      "timeSlot": 1,
+      "status": "confirmed",
+      "id": 5
+    },
+    {
+      "doctorID": 1,
+      "patientID": 1,
+      "timeSlot": 1,
+      "status": "confirmed",
+      "id": 6
+    },
+    {
+      "doctorID": 1,
+      "patientID": 1,
+      "timeSlot": 1,
+      "status": "confirmed",
+      "id": 7
+    }
+  ]
 }
