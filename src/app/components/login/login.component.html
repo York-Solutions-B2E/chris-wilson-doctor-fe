@@ -1,8 +1,6 @@
 <h3>Login</h3>
 
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <div *ngIf="username.invalid"> Name is too short. </div>
-
       <input formControlName="username" placeholder="Username">
       <input formControlName="password" placeholder="Password">
 
@@ -11,4 +9,24 @@
         Submit
       </button>
       <a routerLink="/register" class="btn btn-link">Register</a>
+      
+      
+      
 </form>
+
+<br />
+      <br />
+      <br />
+      <br />
+      <button [disabled]="submitted" (click)="adminLogin()">
+        <span *ngIf="submitted"> Spinning thing</span>
+        admin
+      </button>
+      <button [disabled]="submitted" (click)="doctorLogin()">
+        <span *ngIf="submitted"> Spinning thing</span>
+        doctor
+      </button>
+      <button [disabled]="submitted" (click)="patientLogin()">
+        <span *ngIf="submitted"> Spinning thing</span>
+        patient
+      </button>

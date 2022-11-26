@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { User } from 'src/app/models/User';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { DoctorService } from 'src/app/services/doctor.service';
 import { LoggerServices } from 'src/app/services/Logger';
 
 @Component({
@@ -8,8 +12,32 @@ import { LoggerServices } from 'src/app/services/Logger';
 })
 export class HomeComponent {
 
-  constructor(private logger: LoggerServices){
+  user:User = new User(); 
+
+  constructor(
+    private logger: LoggerServices, 
+    private router: Router,
+    private authentication: AuthenticationService, 
+    private drServices: DoctorService
+    ){
+      //check if anyone is logged in and react when the user logs out
+      this.authentication.currentUser.subscribe(
+        response => {
+          if(!response){
+            //no user is logged in 
+            this.router.navigate(["login"]); 
+          }else{
+            this.user = this.authentication.currentUserValue; 
+          }
+        }
+      ); 
+
+      //testing 
+      drServices.getAvailableTimes(this.user).subscribe(
+        res => console.log(res)
+      )
+
     
-    logger.print(); 
+    
   }
 }

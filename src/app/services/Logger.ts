@@ -19,6 +19,7 @@ export class LoggerServices{
 
 
     print(){
+        console.group();
         //for debugging 
         //if needed https://juristr.com/blog/2016/09/ng2-get-window-ref/
         this.logs.forEach( msg => {
@@ -32,6 +33,8 @@ export class LoggerServices{
             }
             //console.log(msg.message, msg.type)
         })
+
+        console.groupEnd();
     }
 }
 

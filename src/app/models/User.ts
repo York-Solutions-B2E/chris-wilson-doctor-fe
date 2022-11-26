@@ -1,8 +1,9 @@
 export class User {
-    id: number = -1;
+    id:number = -1;
     username: string = "Guest";
     password: string ="";
-    firstName: string = "Guest";
+    firstName: string = "";
     lastName: string = "";
-    token: string|null = null;
+    role: string = "guest";
+    lastLogin: Date = new Date(); 
 }

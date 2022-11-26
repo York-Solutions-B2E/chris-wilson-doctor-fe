@@ -1,0 +1,10 @@
+<div>
+    <div>Hello {{user?.role}} {{user?.firstName}}</div>
+
+    <div *ngIf="admin">
+        Admin...
+        <!-- <button (click)="">Logout</button> -->
+    </div>
+
+    <button (click)="logOut()">Logout</button>
+</div>

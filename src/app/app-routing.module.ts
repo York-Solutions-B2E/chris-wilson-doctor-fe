@@ -6,9 +6,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { TestComponent } from './components/test/test.component';
 
 const routes: Routes = [
-  {path: "", component: HomeComponent}, 
-  {path: "login", component: LoginComponent},
-  {path: "register", component: RegisterComponent},
+  { path: "", component: HomeComponent}, 
+  { path: "login", component: LoginComponent},
+  { path: "register", component: RegisterComponent},
   { path: '**', component: HomeComponent } //TODO: change this to a 404
 ];
 

@@ -18,6 +18,10 @@ export class MessageService {
     this.subject.next({text: msg, type:"msg"}); 
   }
 
+  error(msg: string){
+    this.subject.next({text: msg, type:"err"});
+  }
+
   clear(){
     this.subject.next({});
   }

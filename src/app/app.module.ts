@@ -12,6 +12,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { HttpClientModule } from  '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './components/register/register.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 //import { MessageService } from './services/message.service';
 
 @NgModule({
@@ -21,7 +22,8 @@ import { RegisterComponent } from './components/register/register.component';
     TestComponent,
     LoginComponent,
     MessagesComponent,
-    RegisterComponent
+    RegisterComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,

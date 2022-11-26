@@ -17,6 +17,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscription = this.msg.getMessage().subscribe(message => {
+      //TODO: change css based on msg type 
       this.message = message; 
     });
   }

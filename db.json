@@ -1,12 +1,83 @@
 {
-    "users": [
-      { "id": 1, "username": "gravy", "password": "123456", "firstName": "Chris", "lastName": "Wilson" },
-      { "id": 4, "username": "bobby", "password": "123456", "firstName": "Chris", "lastName": "Wilson" },
-      { "id": 3, "username": "sally", "password": "123456", "firstName": "Chris", "lastName": "Wilson" },
-      { "id": 2, "username": "tester", "password": "123456", "firstName": "Chris", "lastName": "Wilson" }
-    ],
-    "comments": {
-      
+  "users": [
+    {
+      "id": 0,
+      "username": "admin",
+      "password": "admin",
+      "firstName": "Chris",
+      "lastName": "Wilson",
+      "role": "admin",
+      "lastLogin": "2022-11-26T03:16:09.838Z"
     },
-    "profile": { "name": "typicode" }
+    {
+      "id": 1,
+      "username": "bobby",
+      "password": "123456",
+      "firstName": "Bobby",
+      "lastName": "Wilson",
+      "role": "doctor",
+      "lastLogin": "2022-11-26T03:40:58.331Z"
+    },
+    {
+      "id": 2,
+      "username": "sally",
+      "password": "123456",
+      "firstName": "Sally",
+      "lastName": "Wilson",
+      "role": "patient",
+      "lastLogin": "2022-11-26T03:15:51.972Z"
+    },
+    {
+      "id": 3,
+      "username": "tester",
+      "password": "123456",
+      "firstName": "Chris",
+      "lastName": "Wilson",
+      "lastLogin": null
+    },
+    {
+      "id": 4,
+      "username": "Guest",
+      "password": "",
+      "firstName": "Guest",
+      "lastName": "",
+      "lastLogin": null
+    }
+  ],
+  "da": [
+    {
+      "id": 1,
+      "doctorID": 1,
+      "start": "",
+      "end": "",
+      "room": 1
+    },
+    {
+      "id": 2,
+      "doctorID": 1,
+      "start": "",
+      "end": "",
+      "room": 1
+    },
+    {
+      "id": 3,
+      "doctorID": 2,
+      "start": "",
+      "end": "",
+      "room": 1
+    }
+  ],
+  "rooms": [
+    {
+      "id": 1,
+      "number": 96
+    },
+    {
+      "id": 2,
+      "number": 101
+    }
+  ],
+  "profile": {
+    "name": "typicode"
   }
+}
