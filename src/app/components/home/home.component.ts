@@ -5,6 +5,7 @@ import { AppointmentsService } from 'src/app/services/appointments.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { DoctorService } from 'src/app/services/doctor.service';
 import { LoggerServices } from 'src/app/services/Logger';
+import { MessageService } from 'src/app/services/message.service';
 
 @Component({
   selector: 'app-home',
@@ -20,16 +21,25 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private logger: LoggerServices,
+    private msg: MessageService,
     private router: Router,
     private authentication: AuthenticationService,
     private drServices: DoctorService,
     private apptService: AppointmentsService
-  ) {
+  ) { 
     //check if anyone is logged in and react when the user logs out
     this.authentication.currentUser.subscribe(
       response => {
         if (!response) {
           //no user is logged in 
+
+          //clean up 
+          this.dr = false;
+          this.pat = false;
+          this.admin = false;
+          this.user = new User(); 
+
+          //redirect
           this.router.navigate(["login"]);
         } else {
           this.user = this.authentication.currentUserValue;
@@ -38,8 +48,26 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  
+
   ngOnInit(): void {
 
+    switch (this.user.role){
+      case "admin": this.admin = true; 
+      break; 
+
+      case "doctor": this.dr = true; 
+      break; 
+
+      case "patient": this.pat = true; 
+      break; 
+
+      default: {
+        this.logger.log("user role unknown", "error"); 
+        this.msg.error("user role unknown."); 
+
+      }
+    }
+  }//end of ngOnInit
+
+
   }
-}

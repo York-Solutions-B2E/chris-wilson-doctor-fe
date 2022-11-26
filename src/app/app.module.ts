@@ -13,8 +13,10 @@ import { HttpClientModule } from  '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './components/register/register.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { DoctorDashboardComponent } from './components/doctorDash/doctor-dashboard/doctor-dashboard.component'; 
+import { DrApptComponent } from './components/doctorDash/dr-appt/dr-appt.component';
 //import { MessageService } from './services/message.service';
-
+ 
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +25,9 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     LoginComponent,
     MessagesComponent,
     RegisterComponent,
-    NavBarComponent
+    NavBarComponent,
+    DoctorDashboardComponent,
+    DrApptComponent
   ],
   imports: [
     BrowserModule,

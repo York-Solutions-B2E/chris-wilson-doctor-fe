@@ -1,0 +1,12 @@
+
+<div>
+    <div (click)="showPendingApptView()" > Appointments </div>
+    <div> Set Availability </div>
+</div>
+
+
+
+<div *ngIf="pendingApptView">
+    Pending Appointments:
+    <app-dr-appt *ngFor="let appt of appts" [appt] = "appt"></app-dr-appt>
+</div>

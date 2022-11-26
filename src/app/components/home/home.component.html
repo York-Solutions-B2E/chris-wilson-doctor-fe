@@ -1,2 +1,15 @@
 <app-nav-bar></app-nav-bar>
-<p>home works!</p>
+
+
+<!-- dashboards -->
+<div *ngIf="admin">
+    admin
+</div>
+
+<div *ngIf="dr">
+    <app-doctor-dashboard [dr] = user></app-doctor-dashboard>   
+</div>
+ 
+<div *ngIf="pat">
+    patient
+</div>

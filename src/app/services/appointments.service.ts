@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { AppointmentObj } from '../models/appointments';
+import { AppointmentObj } from '../models/Appointments';
 import { DrAvailibilityObj } from '../models/DrAvailablity';
 import { User } from '../models/User';
 import { LoggerServices } from './Logger';

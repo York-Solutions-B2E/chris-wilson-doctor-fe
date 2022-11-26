@@ -7,7 +7,7 @@
       "firstName": "Chris",
       "lastName": "Wilson",
       "role": "admin",
-      "lastLogin": "2022-11-26T08:39:40.627Z"
+      "lastLogin": "Sat Nov 26 2022 13:30:57 GMT-0700 (Mountain Standard Time)"
     },
     {
       "id": 1,
@@ -16,7 +16,7 @@
       "firstName": "Bobby",
       "lastName": "Wilson",
       "role": "doctor",
-      "lastLogin": "Sat Nov 26 2022 12:41:22 GMT-0700 (Mountain Standard Time)"
+      "lastLogin": "Sat Nov 26 2022 16:31:16 GMT-0700 (Mountain Standard Time)"
     },
     {
       "id": 2,
@@ -25,7 +25,7 @@
       "firstName": "Sally",
       "lastName": "Wilson",
       "role": "patient",
-      "lastLogin": "2022-11-26T08:39:45.611Z"
+      "lastLogin": "Sat Nov 26 2022 15:01:53 GMT-0700 (Mountain Standard Time)"
     },
     {
       "id": 3,
@@ -109,35 +109,35 @@
       "id": 1,
       "doctorID": 1,
       "patientID": 1,
-      "timeSlot": 1,
-      "status": "cancelled"
+      "timeSlot": 7,
+      "status": "pending"
     },
     {
       "doctorID": 1,
       "patientID": 2,
       "timeSlot": 1,
-      "status": "pending",
+      "status": "confirmed",
       "id": 2
     },
     {
       "doctorID": 1,
       "patientID": 1,
       "timeSlot": 1,
-      "status": "confirmed",
+      "status": "pending",
       "id": 4
     },
     {
       "doctorID": 1,
       "patientID": 1,
       "timeSlot": 1,
-      "status": "confirmed",
+      "status": "pending",
       "id": 5
     },
     {
       "doctorID": 1,
       "patientID": 1,
       "timeSlot": 1,
-      "status": "confirmed",
+      "status": "pending",
       "id": 6
     },
     {

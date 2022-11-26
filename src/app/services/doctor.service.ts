@@ -71,4 +71,16 @@ export class DoctorService {
 
   }
 
+  getApptDetails(id: number){
+    let observer = new Subject();
+
+    this.http.get<DrAvailibilityObj>(`${this.baseURL}/docAvailability/${id}`).subscribe(res => {
+      //fix date 
+    
+      observer.next(res)
+    })
+
+    return observer
+  }
+
 }

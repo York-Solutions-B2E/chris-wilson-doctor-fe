@@ -1,0 +1,19 @@
+<p>dr-appt works!</p>
+{{appt.status}}
+
+<div>
+start time: {{apptDetails.start}} <br />
+Room: {{apptDetails.room}}
+</div>
+
+<button *ngIf="pending"  (click)="cancelAppt()">
+    Deny
+</button>
+
+<button *ngIf="pending"  (click)="confirmAppt()">
+    Confirm
+</button>
+
+<button *ngIf="!pending"  (click)="setToPending()">
+    Change
+</button>
