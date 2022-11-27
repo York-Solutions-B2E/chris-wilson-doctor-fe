@@ -51,11 +51,26 @@ export class HomeComponent implements OnInit, OnDestroy{
         }
       }
     );
+
+      // let dra = new DrAvailibilityObj(); 
+
+      // dra.addAvailability(1, 8, 0, 12, 0); 
+      // dra.addAvailability(1, 13, 0, 17, 0); 
+
+      // dra.addAvailability(2, 8, 0, 12, 0); 
+      // dra.addAvailability(2, 13, 0, 17, 0);
+
+    //testing
+    // this.drServices.createAvailableTime(this.user, dra).subscribe( res => {
+    //   console.log(res); 
+    // })
+
+    
+
+
+
+    
   }
-
-
-
-
   ngOnDestroy(): void {
     this.test?.unsubscribe(); 
   }
@@ -85,7 +100,7 @@ export class HomeComponent implements OnInit, OnDestroy{
   }
 
 
-  //for testing
+  //test 
 
   interface timeNode{
     hours: number,

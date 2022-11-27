@@ -2,7 +2,7 @@
 
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <input formControlName="username" placeholder="Username">
-      <input formControlName="password" placeholder="Password">
+      <input formControlName="password" type="password" placeholder="Password">
 
       <button [disabled]="submitted" type="submit">
         <span *ngIf="submitted"> Spinning thing</span>

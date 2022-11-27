@@ -18,34 +18,33 @@ export class DrAvailibilityObj {
     ) {
         if (day > 6) throw new Error("Day must be between 0-6");
 
-        //start time
+        this.days[day].push(this.timeObjectCreator(startHour, startMin, endHour, endMin));
 
-        this.days[day].push(this.timeObjectCreator(startHour, startMin));
-
-        //end time
-        this.days[day].push(this.timeObjectCreator(endHour, endMin));
     }
 
     removeAvailability(day: number, position: number) {
         if (day > 6) return;
 
-        this.days[day].splice(position, 2);
+        this.days[day].splice(position, 1);
     }
 
     changeAvailability(day: number = 0, position: number, startHour: number,
         startMin: number, endHour: number, endMin: number) {
 
-        this.days[day][position] = this.timeObjectCreator(startHour, startMin);
-        this.days[day][position + 1] = this.timeObjectCreator(endHour, endMin);
+        this.days[day][position] = this.timeObjectCreator(startHour, startMin, endHour, endMin);
     }
 
-    private timeObjectCreator(hours: number, mins: number) {
-        if (hours < 0) hours = 0;
-        if (hours > 23) hours = 23;
-        if (mins < 0) mins = 0
-        if (mins > 59) mins = 59;
+   
 
-        return { hours: hours, mins: mins }
+    private timeObjectCreator(startHours: number, startMins: number, endHours: number, endMins: number) {
+    
+        //TODO: write checking code
+        return { 
+            startHours: startHours,
+            startMins: startMins, 
+            endHours: endHours, 
+            endMins: endMins 
+        }
     }
 }
 

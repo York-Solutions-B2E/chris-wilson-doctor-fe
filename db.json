@@ -16,7 +16,7 @@
       "firstName": "Bobby",
       "lastName": "Wilson",
       "role": "doctor",
-      "lastLogin": "Sat Nov 26 2022 16:31:16 GMT-0700 (Mountain Standard Time)"
+      "lastLogin": "Sun Nov 27 2022 01:30:12 GMT-0700 (Mountain Standard Time)"
     },
     {
       "id": 2,
@@ -33,7 +33,8 @@
       "password": "123456",
       "firstName": "Chris",
       "lastName": "Wilson",
-      "lastLogin": null
+      "role": "doctor",
+      "lastLogin": "Sun Nov 27 2022 01:29:42 GMT-0700 (Mountain Standard Time)"
     },
     {
       "id": 4,
@@ -46,8 +47,12 @@
   ],
   "docAvailability": [
     {
-      "id": 1,
-      "days": "[[],[{\"hours\":8,\"mins\":0},{\"hours\":12,\"mins\":0},{\"hours\":13,\"mins\":0},{\"hours\":17,\"mins\":0}],[{\"hours\":8,\"mins\":0},{\"hours\":12,\"mins\":0},{\"hours\":13,\"mins\":0},{\"hours\":17,\"mins\":0}],[],[],[],[]]"
+      "days": "[[],[{\"startHours\":8,\"startMins\":0,\"endHours\":12,\"endMins\":0},{\"startHours\":13,\"startMins\":0,\"endHours\":17,\"endMins\":0}],[{\"startHours\":8,\"startMins\":0,\"endHours\":12,\"endMins\":0},{\"startHours\":13,\"startMins\":0,\"endHours\":17,\"endMins\":0}],[{\"startHours\":2,\"startMins\":0,\"endHours\":8,\"endMins\":0}],[{\"startHours\":1,\"startMins\":30,\"endHours\":2,\"endMins\":45}],[],[]]",
+      "id": 1
+    },
+    {
+      "days": "[[],[],[{\"startHours\":8,\"startMins\":0,\"endHours\":12,\"endMins\":0},{\"startHours\":13,\"startMins\":0,\"endHours\":17,\"endMins\":0}],[],[],[],[]]",
+      "id": 3
     }
   ],
   "appointments": [
@@ -56,7 +61,7 @@
       "doctorID": 1,
       "patientID": 1,
       "timeSlot": 7,
-      "status": "pending"
+      "status": "cancelled"
     },
     {
       "doctorID": 1,

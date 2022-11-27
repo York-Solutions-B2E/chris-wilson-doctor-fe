@@ -36,11 +36,11 @@ export class DrApptComponent implements OnInit {
     this.pending = this.appt.status == "pending"; 
     this.confirmed = this.appt.status == "confirmed";
 
-    this.drAvail.getApptDetails(this.appt.timeSlot).subscribe( res => {
+    // this.drAvail.getAvailableTimes(this.appt.timeSlot).subscribe( res => {
       
-      //this.apptDetails = res as DrAvailibilityObj
+    //   //this.apptDetails = res as DrAvailibilityObj
  
-    })
+    // })
   }
 
   cancelAppt(){

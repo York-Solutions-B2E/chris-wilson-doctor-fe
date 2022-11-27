@@ -1,17 +1,46 @@
-
 <div>
-    
 
+    set Available time
 </div>
 
-<!-- <div class="day" *ngFor="let day of days">
-{{day}} <br />
-    <div *ngFor="let item of [].constructor(24); let i = index">
-        
-            <div class="hourButton">
-                {{i}}
-            </div>
-        
+
+
+<ng-container *ngFor="let arrays of myAvailibleTimes?.days; let i = index">
+    <div class="day">
+        {{daysOfWeek[i]}}
+
+
+        <form>
+    
+        </form>
+        <div>
+            <input style="width: 10px;" type="text" id="startHours{{i}}" >:
+            <input style="width: 10px;" type="text" id="startMins{{i}}" >
+            to
+            <input style="width: 10px;" type="text" id="endHours{{i}}" >:
+            <input style="width: 10px;" type="text" id="endMins{{i}}" >
+            <button (click)="addAvail(i)" >add time</button>
+        </div>
+        <div *ngFor="let times of arrays let x = index">
+        <!-- <div *ngFor="let x of [].constructor(arrays.length); let i = index;"></div> -->
+            
+            <!-- 
+        stupid type checking won't let me access properties on an object 
+        https://upmostly.com/angular/the-any-type-cast-function-in-angular
+        https://angular.io/guide/template-expression-operators#any-type-cast-function
+         -->
+
+         <!-- I don't know of a good way to add the 0 before any number below 10
+         function calls are bad for preformance.  -->
+
+            <p> {{$any(times).startHours}} : {{$any(times).startMins}} to {{$any(times).endHours}} : {{$any(times).endMins}}
+
+                <button (click)="deleteAvail(i, x)">
+                    delete
+                </button>
+            </p>
+
+        </div>
     </div>
 
-</div> -->
+</ng-container>

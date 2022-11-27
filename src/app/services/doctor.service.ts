@@ -89,15 +89,4 @@ export class DoctorService {
     return observer
   }
 
-  getApptDetails(id: number){
-    let observer = new Subject();
-
-    this.http.get<any>(`${this.baseURL}/docAvailability/${id}`).subscribe(res => {
-      //fix date 
-      
-    })
-
-    return observer
-  }
-
 }
