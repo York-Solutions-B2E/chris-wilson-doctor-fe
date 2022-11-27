@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { filter, flatMap, from, map, Observable, Observer, of, Subject, Subscription } from 'rxjs';
-import { DrAvailibilityObj } from '../models/DrAvailablity';
+import { filter, flatMap, from, map, Observable, Observer, of, Subject, Subscription, take } from 'rxjs';
+import { DrAvailibilityObj, TimeNode } from '../models/DrAvailablity';
 import { User } from '../models/User';
 import { LoggerServices } from './Logger';
 import { MessageService } from './message.service';
@@ -21,19 +21,14 @@ export class DoctorService {
 
   
 
-  getAvailableTimes(doctor: User): Subject<any> {
-    let observer = new Subject();
+  getAvailableTimes(doctor: User): Subject<DrAvailibilityObj> {
+    let observer = new Subject<DrAvailibilityObj>();
 
-    //this took forever to figure out... :(
-    this.http.get<DrAvailibilityObj[]>(`${this.baseURL}/docAvailability`).subscribe(res => {
-      let results: DrAvailibilityObj[] = [];
+    this.http.get<any>(`${this.baseURL}/docAvailability/${doctor.id}`).pipe(take(1)).subscribe(res => {
+      let results = new DrAvailibilityObj(); 
 
-      res.forEach(x => {
-        if (x.doctorID === doctor.id) {
-          results.push(x);
-        }
-      })
-
+      results.days = JSON.parse(res.days);
+    
       observer.next(results)
     })
 
@@ -41,20 +36,21 @@ export class DoctorService {
 
   }
 
-  createAvailableTime(doctor: User, startTime: string, room: number) {
+  
 
-    let observer = new Subject();
+  createAvailableTime(doctor: User, avaliablity: DrAvailibilityObj): Subject<DrAvailibilityObj|boolean> {
 
-   
+    let observer = new Subject<DrAvailibilityObj|boolean>();
 
     this.http.post<any>(`${this.baseURL}/docAvailability`, {
-      doctorID: doctor.id,
-      start: startTime,
-      room: room
-    }).subscribe({
+      id: doctor.id, 
+      days: JSON.stringify(avaliablity.days)
+    }).pipe(take(1)).subscribe({
       next: res => {
-         
-        observer.next(res as User);
+        let results = new DrAvailibilityObj(); 
+
+        results.days = JSON.parse(res.days);
+        observer.next(results);
       },
       error: err => {
         this.msg.error(err.message);
@@ -66,18 +62,39 @@ export class DoctorService {
     return observer;
   }
 
+  updateAvailability(doctor: User, avaliablity: DrAvailibilityObj): Subject<DrAvailibilityObj|boolean>{
+    let observer = new Subject<DrAvailibilityObj|boolean>();
 
-  deleteAvailableTime(doctor: User, avil: DrAvailibilityObj){
+    this.http.put<any>(`${this.baseURL}/docAvailability/${doctor.id}`, {
+      days: JSON.stringify(avaliablity.days)
+    }).pipe(take(1)).subscribe(res => {
+      //fix date 
+      observer.next(res); 
+    })
 
+    return observer
+  }
+
+
+  deleteAvailableTime(doctor: User, avil: DrAvailibilityObj): Subject<boolean>{
+    let observer = new Subject<boolean>();
+
+    this.http.delete<any>(`${this.baseURL}/docAvailability/${doctor.id}`).pipe(
+      take(1)
+    ).subscribe(res => {
+      //fix date 
+      observer.next(res); 
+    })
+
+    return observer
   }
 
   getApptDetails(id: number){
     let observer = new Subject();
 
-    this.http.get<DrAvailibilityObj>(`${this.baseURL}/docAvailability/${id}`).subscribe(res => {
+    this.http.get<any>(`${this.baseURL}/docAvailability/${id}`).subscribe(res => {
       //fix date 
-    
-      observer.next(res)
+      
     })
 
     return observer

@@ -15,6 +15,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { DoctorDashboardComponent } from './components/doctorDash/doctor-dashboard/doctor-dashboard.component'; 
 import { DrApptComponent } from './components/doctorDash/dr-appt/dr-appt.component';
+import { DoctorAvailViewComponent } from './components/doctorDash/doctor-avail-view/doctor-avail-view.component';
 //import { MessageService } from './services/message.service';
  
 @NgModule({
@@ -27,7 +28,8 @@ import { DrApptComponent } from './components/doctorDash/dr-appt/dr-appt.compone
     RegisterComponent,
     NavBarComponent,
     DoctorDashboardComponent,
-    DrApptComponent
+    DrApptComponent,
+    DoctorAvailViewComponent
   ],
   imports: [
     BrowserModule,

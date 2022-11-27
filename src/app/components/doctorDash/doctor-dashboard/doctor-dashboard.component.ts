@@ -36,8 +36,6 @@ export class DoctorDashboardComponent implements OnInit {
   ngOnInit(): void {
     this.apptService.getApptForDr(this.dr).subscribe( res => {
       this.appts = res; 
-
-      console.log(res);
     })
   }
 
@@ -45,6 +43,11 @@ export class DoctorDashboardComponent implements OnInit {
     this.hideAllViews(); 
 
     this.pendingApptView = true; 
+  }
+
+  showAvailView(){
+    this.hideAllViews(); 
+    this.setAvailView = true; 
   }
 
 

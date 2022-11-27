@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subject, Subscribable, Subscriber, Subscription, take } from 'rxjs';
+import { DrAvailibilityObj } from 'src/app/models/DrAvailablity';
 import { User } from 'src/app/models/User';
 import { AppointmentsService } from 'src/app/services/appointments.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -12,12 +14,15 @@ import { MessageService } from 'src/app/services/message.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy{
 
   user: User = new User();
   dr: boolean = false;
   pat: boolean = false;
   admin: boolean = false;
+
+
+  test: Subscription|null = null; 
 
   constructor(
     private logger: LoggerServices,
@@ -49,6 +54,13 @@ export class HomeComponent implements OnInit {
   }
 
 
+
+
+  ngOnDestroy(): void {
+    this.test?.unsubscribe(); 
+  }
+
+
   ngOnInit(): void {
 
     switch (this.user.role){
@@ -70,4 +82,12 @@ export class HomeComponent implements OnInit {
   }//end of ngOnInit
 
 
+  }
+
+
+  //for testing
+
+  interface timeNode{
+    hours: number,
+    mins: number
   }

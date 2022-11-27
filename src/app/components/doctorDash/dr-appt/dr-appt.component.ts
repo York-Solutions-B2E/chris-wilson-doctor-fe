@@ -17,7 +17,7 @@ export class DrApptComponent implements OnInit {
   pending: boolean = false; 
   confirmed: boolean = false; 
 
-  apptDetails: DrAvailibilityObj = new DrAvailibilityObj(); 
+  //apptDetails: DrAvailibilityObj = new DrAvailibilityObj(); 
 
   constructor(
     private apptService: AppointmentsService, 
@@ -38,9 +38,8 @@ export class DrApptComponent implements OnInit {
 
     this.drAvail.getApptDetails(this.appt.timeSlot).subscribe( res => {
       
-      this.apptDetails = res as DrAvailibilityObj
-
-      console.log(this.apptDetails.start); 
+      //this.apptDetails = res as DrAvailibilityObj
+ 
     })
   }
 

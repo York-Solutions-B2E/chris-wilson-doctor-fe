@@ -47,61 +47,7 @@
   "docAvailability": [
     {
       "id": 1,
-      "doctorID": 1,
-      "start": "",
-      "room": 1
-    },
-    {
-      "id": 2,
-      "doctorID": 1,
-      "start": "",
-      "room": 1
-    },
-    {
-      "doctorID": 1,
-      "start": "Sat Nov 26 2022 12:37:59 GMT-0700 (Mountain Standard Time)",
-      "room": 1,
-      "id": 3
-    },
-    {
-      "doctorID": 1,
-      "start": "Sat Nov 26 2022 12:38:06 GMT-0700 (Mountain Standard Time)",
-      "room": 1,
-      "id": 4
-    },
-    {
-      "doctorID": 1,
-      "start": "Sat Nov 26 2022 12:41:10 GMT-0700 (Mountain Standard Time)",
-      "room": 1,
-      "id": 5
-    },
-    {
-      "doctorID": 1,
-      "start": "Sat Nov 26 2022 12:41:22 GMT-0700 (Mountain Standard Time)",
-      "room": 1,
-      "id": 6
-    },
-    {
-      "doctorID": 1,
-      "start": "Sat Nov 26 2022 12:44:29 GMT-0700 (Mountain Standard Time)",
-      "room": 1,
-      "id": 7
-    },
-    {
-      "doctorID": 1,
-      "start": "Sat Nov 26 2022 12:46:43 GMT-0700 (Mountain Standard Time)",
-      "room": 1,
-      "id": 8
-    }
-  ],
-  "rooms": [
-    {
-      "id": 1,
-      "number": 96
-    },
-    {
-      "id": 2,
-      "number": 101
+      "days": "[[],[{\"hours\":8,\"mins\":0},{\"hours\":12,\"mins\":0},{\"hours\":13,\"mins\":0},{\"hours\":17,\"mins\":0}],[{\"hours\":8,\"mins\":0},{\"hours\":12,\"mins\":0},{\"hours\":13,\"mins\":0},{\"hours\":17,\"mins\":0}],[],[],[],[]]"
     }
   ],
   "appointments": [

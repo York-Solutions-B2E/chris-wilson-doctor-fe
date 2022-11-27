@@ -1,0 +1,15 @@
+.day{
+    width: 125px; 
+    margin: 10px;
+    background-color: rgb(174, 255, 255);
+    float: left;
+}
+
+.hourButton{
+    cursor: pointer;
+    border: 1px solid lightgray;
+}
+
+.hourButton:hover{
+    border: 1px solid black;
+}
