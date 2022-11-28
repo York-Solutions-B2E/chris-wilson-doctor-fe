@@ -20,8 +20,27 @@ export class UserService {
     private msg: MessageService
   ) { }
 
+  getListOfDr() {
+    let obser = new Subject<any>();
 
-  getAllUsers(){
+    this.http.get<User[]>(`${this.path}`).pipe(take(1)).subscribe({
+      next: res => {
+        let drs: User[] = res.filter( x => x.role === "doctor");
+        
+        obser.next(drs); 
+      },
+
+      error: err => {
+        this.msg.error(err.message);
+        this.logger.log(err)
+
+        obser.next(false)
+      }
+    });
+    return obser;
+  }
+
+  getAllUsers() {
     let obser = new Subject<any>();
     this.http.get<User[]>(`${this.path}`).pipe(take(1)).subscribe({
       next: res => {
@@ -29,16 +48,16 @@ export class UserService {
       },
 
       error: err => {
-        this.msg.error(err.message); 
+        this.msg.error(err.message);
         this.logger.log(err)
 
         obser.next(false)
       }
-    }); 
+    });
     return obser;
   }
 
-  getUserInfo(id: number){
+  getUserInfo(id: number) {
     let obser = new Subject<any>();
     this.http.get<User>(`${this.path}/${id}`).pipe(take(1)).subscribe({
       next: res => {
@@ -47,11 +66,11 @@ export class UserService {
 
       error: err => {
         //user wasn't found so doesn't exists
-        this.msg.error(`User with id ${id} was not found`); 
+        this.msg.error(`User with id ${id} was not found`);
         this.logger.log(`User with id ${id} was not found`)
         obser.next(false)
       }
-    }); 
+    });
     return obser;
   }
 
@@ -91,12 +110,12 @@ export class UserService {
 
     this.http.put<any>(`${this.path}/${user.id}`, { ...user }).pipe(take(1)).subscribe({
       next: response => {
-        observer.next(true); 
-      }, 
+        observer.next(true);
+      },
       error: err => {
         this.msg.error(err.message)
         this.logger.log(err.message);
-        observer.next(false); 
+        observer.next(false);
       }
     })
 
