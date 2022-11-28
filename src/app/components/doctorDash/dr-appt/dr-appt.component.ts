@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { take } from 'rxjs';
 import { AppointmentObj } from 'src/app/models/Appointments';
-import { DrAvailibilityObj } from 'src/app/models/DrAvailablity';
 import { User } from 'src/app/models/User';
 import { AppointmentsService } from 'src/app/services/appointments.service';
 import { MessageService } from 'src/app/services/message.service';

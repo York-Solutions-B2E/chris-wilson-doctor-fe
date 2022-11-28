@@ -7,7 +7,7 @@
       "firstName": "Chris",
       "lastName": "Wilson",
       "role": "admin",
-      "lastLogin": "Sun Nov 27 2022 20:36:00 GMT-0700 (Mountain Standard Time)"
+      "lastLogin": "Mon Nov 28 2022 00:30:59 GMT-0700 (Mountain Standard Time)"
     },
     {
       "id": 1,
@@ -16,7 +16,7 @@
       "firstName": "Bobby",
       "lastName": "Wilson",
       "role": "doctor",
-      "lastLogin": "Sun Nov 27 2022 22:37:36 GMT-0700 (Mountain Standard Time)"
+      "lastLogin": "Mon Nov 28 2022 00:43:39 GMT-0700 (Mountain Standard Time)"
     },
     {
       "id": 2,
@@ -25,7 +25,7 @@
       "firstName": "Sally",
       "lastName": "Wilson",
       "role": "patient",
-      "lastLogin": "Sun Nov 27 2022 22:57:13 GMT-0700 (Mountain Standard Time)"
+      "lastLogin": "Mon Nov 28 2022 00:31:01 GMT-0700 (Mountain Standard Time)"
     },
     {
       "id": 3,
@@ -43,6 +43,15 @@
       "firstName": "Guest",
       "lastName": "",
       "lastLogin": null
+    },
+    {
+      "id": -1,
+      "username": "rusty",
+      "password": "123456",
+      "firstName": "rusty",
+      "lastName": "venture",
+      "role": "doctor",
+      "lastLogin": ""
     }
   ],
   "docAvailability": [

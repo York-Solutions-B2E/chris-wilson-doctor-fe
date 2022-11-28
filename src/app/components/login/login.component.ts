@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, take } from 'rxjs';
 import { User } from 'src/app/models/User';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { LoggerService } from 'src/app/services/logger.service';
@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit{
 
    
   submitted: boolean = false; //indicate when waiting for server to respond
-  error: boolean = false;     //show error message if there was an error
 
   loginForm: FormGroup = new FormGroup({
     username: new FormControl(""),
@@ -27,7 +26,6 @@ export class LoginComponent implements OnInit{
   });
 
   constructor(
-    //private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
     private logger: LoggerService,
@@ -38,9 +36,11 @@ export class LoginComponent implements OnInit{
     //check if user is already logged in 
     if(this.authenticationService.currentUserValue){
       //there is a current user 
-      this.router.navigate(["/"]); 
+      //redirect to "home" page
+      this.router.navigate(["/"]);
     }
   }
+
   ngOnInit(): void {
      
   }
@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit{
 
   login(username:string, password:string){
     this.submitted = true;
-    this.authenticationService.login(username, password).subscribe({
+    this.authenticationService.login(username, password).pipe(take(1)).subscribe({
       next: user => {
         //user logged in 
           user.lastLogin = Date(); 
@@ -72,6 +72,8 @@ export class LoginComponent implements OnInit{
             response => {
               //user was authenticated 
               //login time was updated 
+
+              //redirect to the login page
               this.router.navigate(["/"]); 
 
               

@@ -9,6 +9,7 @@ import { MessageService } from './message.service';
 @Injectable({
   providedIn: 'root'
 })
+//service for managing a doctors availible time
 export class AvailTimeService {
 
   path: string = "http://localhost:3000/docAvailability";
@@ -33,9 +34,9 @@ export class AvailTimeService {
       },
 
       error: err => {
-        //wasn't found 
+        //wasn't found log errors and notify user
 
-        this.logger.log("can't create availible time");
+        this.logger.log(err);
         this.msg.error("Can't create Availible time")
         obser.next(false)
       }
@@ -43,7 +44,7 @@ export class AvailTimeService {
     return obser;
   }
 
-  //read availible time 
+  //read availible time by id
   getAvailTime(id: number): Subject<any>  {
     let obser = new Subject<any>();
 
@@ -54,7 +55,7 @@ export class AvailTimeService {
 
       error: err => {
         this.msg.error(`No item with id of ${id}`); 
-        this.logger.log(err, "error"); 
+        this.logger.log(err); 
         obser.next(false)
       }
     }); 
@@ -63,6 +64,7 @@ export class AvailTimeService {
     return obser
   }
 
+  //returns an array with just the availible times of a specific doctor
   getAvailTimeFor(dr: User): Subject<any> {
     let obser = new Subject<any>();
 
@@ -84,8 +86,7 @@ export class AvailTimeService {
     return obser;
   }
 
-  //edit availible time 
-
+  //update availible time 
   editAvailTime(aTime: AvailObj): Subject<any> {
     let obser = new Subject<any>();
 
@@ -105,8 +106,8 @@ export class AvailTimeService {
 
     return obser;
   }
-  //delete availible time 
 
+  //delete availible time 
   deleteAvailTime(aTime: AvailObj): Subject<any>{
     let obser = new Subject<any>();
 
@@ -120,7 +121,7 @@ export class AvailTimeService {
 
       error: err => {
         this.msg.error(`Can't delete availible time`); 
-        this.logger.log(err, "error"); 
+        this.logger.log(err); 
         obser.next(false); 
       }
     });

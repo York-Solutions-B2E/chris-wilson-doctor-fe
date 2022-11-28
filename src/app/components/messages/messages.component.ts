@@ -7,6 +7,7 @@ import { MessageService } from 'src/app/services/message.service';
   templateUrl: './messages.component.html',
   styleUrls: ['./messages.component.css']
 })
+//component for showing messages sent to the message service
 export class MessagesComponent implements OnInit, OnDestroy {
 
   subscription:Subscription | null = null; 
@@ -33,6 +34,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
     this.showMsg = true; 
 
+    //I would like to fade the message out but this will do
     setTimeout(() => {
       this.showMsg = false; 
     }, 4000)

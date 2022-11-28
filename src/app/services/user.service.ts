@@ -9,6 +9,7 @@ import { MessageService } from './message.service';
 @Injectable({
   providedIn: 'root'
 })
+//service for managing users
 export class UserService {
 
   path: string = "http://localhost:3000/users";
@@ -20,6 +21,8 @@ export class UserService {
     private msg: MessageService
   ) { }
 
+  //get a list of users with the role of "doctor"
+  //returns an array
   getListOfDr() {
     let obser = new Subject<any>();
 
@@ -40,6 +43,7 @@ export class UserService {
     return obser;
   }
 
+  //get an array of all users
   getAllUsers() {
     let obser = new Subject<any>();
     this.http.get<User[]>(`${this.path}`).pipe(take(1)).subscribe({
@@ -57,6 +61,7 @@ export class UserService {
     return obser;
   }
 
+  //get a user from an ID
   getUserInfo(id: number) {
     let obser = new Subject<any>();
     this.http.get<User>(`${this.path}/${id}`).pipe(take(1)).subscribe({
@@ -74,6 +79,7 @@ export class UserService {
     return obser;
   }
 
+  //create a new user
   createNewUser(user: User): Subject<any> {
     let obser = new Subject<any>();
 
@@ -95,7 +101,7 @@ export class UserService {
             },
             error: err => {
               this.logger.log(err.message);
-
+              obser.next(false)
             }
           })
         }
@@ -105,6 +111,7 @@ export class UserService {
 
   }
 
+  //update the values of a user 
   updateUser(user: User) {
     let observer = new Subject();
 
@@ -122,4 +129,6 @@ export class UserService {
 
     return observer;
   }
+
+  //delete user
 }

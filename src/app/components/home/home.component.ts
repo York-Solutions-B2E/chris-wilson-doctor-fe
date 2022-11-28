@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject, Subscribable, Subscriber, Subscription, take } from 'rxjs';
 import { AvailObj } from 'src/app/models/AvailObj';
-import { DrAvailibilityObj } from 'src/app/models/DrAvailablity';
 import { User } from 'src/app/models/User';
 import { AppointmentsService } from 'src/app/services/appointments.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -36,7 +35,7 @@ export class HomeComponent implements OnInit, OnDestroy{
     private availTime: AvailTimeService
   ) { 
     //check if anyone is logged in and react when the user logs out
-    this.authentication.currentUser.subscribe(
+    this.authentication.currentUser.pipe(take(1)).subscribe(
       response => {
         if (!response) {
           //no user is logged in 
@@ -54,33 +53,9 @@ export class HomeComponent implements OnInit, OnDestroy{
         }
       }
     );
-//testing
-      
-      // this.availTime.createAvailTime(this.user.id, "time").pipe(take(1)).subscribe(res => {
-      //     console.log(res)
-      // }); 
-
-      // this.apptService.getApptsForDr(this.user).subscribe(res => {
-      //   console.log(res)
-      // })
-      
-
-      
-
-
-    
-
-      
-
-
-    
-
-    
-
-
-
-    
   }
+
+  
   ngOnDestroy(): void {
     
   }

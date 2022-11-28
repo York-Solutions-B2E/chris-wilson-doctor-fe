@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
-import { TestComponent } from './components/test/test.component';
 import { LoginComponent } from './components/login/login.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { AuthenticationService } from './services/authentication.service';
@@ -22,7 +21,6 @@ import { UserDashboardComponent } from './components/patientDash/user-dashboard/
   declarations: [
     AppComponent,
     HomeComponent,
-    TestComponent,
     LoginComponent,
     MessagesComponent,
     RegisterComponent,
