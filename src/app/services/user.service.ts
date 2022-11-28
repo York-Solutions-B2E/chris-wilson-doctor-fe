@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, Input } from '@angular/core';
-import { catchError, Subject } from 'rxjs';
+import { catchError, Subject, take } from 'rxjs';
 import { User } from '../models/User';
-import { LoggerServices } from './Logger';
+import { LoggerService } from './logger.service';
+
 import { MessageService } from './message.service';
 
 @Injectable({
@@ -14,16 +15,51 @@ export class UserService {
 
 
   constructor(
-    private logger: LoggerServices,
+    private logger: LoggerService,
     private http: HttpClient,
     private msg: MessageService
   ) { }
+
+
+  getAllUsers(){
+    let obser = new Subject<any>();
+    this.http.get<User[]>(`${this.path}`).pipe(take(1)).subscribe({
+      next: res => {
+        obser.next(res)
+      },
+
+      error: err => {
+        this.msg.error(err.message); 
+        this.logger.log(err)
+
+        obser.next(false)
+      }
+    }); 
+    return obser;
+  }
+
+  getUserInfo(id: number){
+    let obser = new Subject<any>();
+    this.http.get<User>(`${this.path}/${id}`).pipe(take(1)).subscribe({
+      next: res => {
+        obser.next(res)
+      },
+
+      error: err => {
+        //user wasn't found so doesn't exists
+        this.msg.error(`User with id ${id} was not found`); 
+        this.logger.log(`User with id ${id} was not found`)
+        obser.next(false)
+      }
+    }); 
+    return obser;
+  }
 
   createNewUser(user: User): Subject<any> {
     let obser = new Subject<any>();
 
     //first check if user exists 
-    this.http.get<User[]>(`${this.path}?username=${user.username}`).subscribe(
+    this.http.get<User[]>(`${this.path}?username=${user.username}`).pipe(take(1)).subscribe(
       response => {
         if (response.length > 0) {
           //user already exists
@@ -53,7 +89,7 @@ export class UserService {
   updateUser(user: User) {
     let observer = new Subject();
 
-    this.http.put<any>(`${this.path}/${user.id}`, { ...user }).subscribe({
+    this.http.put<any>(`${this.path}/${user.id}`, { ...user }).pipe(take(1)).subscribe({
       next: response => {
         observer.next(true); 
       }, 

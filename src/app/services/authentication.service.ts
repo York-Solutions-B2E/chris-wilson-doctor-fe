@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, map, Observable, Subscription, throwError } from 'rxjs';
-import { LoggerServices } from './Logger';
 import { User } from '../models/User';
+import { LoggerService } from './logger.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class AuthenticationService {
 
   constructor(
     private http: HttpClient,
-    private logger: LoggerServices
+    private logger: LoggerService
   ) {
     let userInfo;
     //if there is an error parsing the data from the sessionStorage it breaks everything 

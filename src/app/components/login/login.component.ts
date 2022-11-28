@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { User } from 'src/app/models/User';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { LoggerServices } from 'src/app/services/Logger';
+import { LoggerService } from 'src/app/services/logger.service';
 import { MessageService } from 'src/app/services/message.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit{
     //private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private logger: LoggerServices,
+    private logger: LoggerService,
     private msg: MessageService, 
     private userService: UserService
   ) {

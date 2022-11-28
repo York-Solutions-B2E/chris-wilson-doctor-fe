@@ -11,6 +11,8 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
   subscription:Subscription | null = null; 
   message:any; 
+  showMsg = false; 
+
     constructor(private msg: MessageService){
 
     }
@@ -18,12 +20,22 @@ export class MessagesComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscription = this.msg.getMessage().subscribe(message => {
       //TODO: change css based on msg type 
-      this.message = message; 
+      this.showMessage(message); 
     });
   }
 
   ngOnDestroy(): void {
     this.subscription?.unsubscribe(); 
+  }
+
+  showMessage(msg:String){
+    this.message = msg; 
+
+    this.showMsg = true; 
+
+    setTimeout(() => {
+      this.showMsg = false; 
+    }, 4000)
   }
 
     

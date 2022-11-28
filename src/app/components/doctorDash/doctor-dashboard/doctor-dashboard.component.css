@@ -1,0 +1,29 @@
+.freeSlotWrapper{
+    overflow: hidden;
+}
+
+.divButton{
+    cursor: pointer;
+    width: 250px;
+    border: 1px solid lightgray;
+    text-align: center;
+    
+    
+}
+
+.divButton:hover{
+    border: 1px solid black;
+
+}
+
+.freeTimeSlot{
+    width: 250px;
+    height: 150px;
+    float: left;
+    margin: 10px;
+    border: 2px solid rgb(189, 189, 189);
+}
+
+.freeTimeSlot:hover{
+    border: 2px solid black;
+}

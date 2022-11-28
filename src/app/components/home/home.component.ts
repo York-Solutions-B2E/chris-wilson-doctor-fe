@@ -1,13 +1,15 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject, Subscribable, Subscriber, Subscription, take } from 'rxjs';
+import { AvailObj } from 'src/app/models/AvailObj';
 import { DrAvailibilityObj } from 'src/app/models/DrAvailablity';
 import { User } from 'src/app/models/User';
 import { AppointmentsService } from 'src/app/services/appointments.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { DoctorService } from 'src/app/services/doctor.service';
-import { LoggerServices } from 'src/app/services/Logger';
+import { AvailTimeService } from 'src/app/services/avail-time.service';
+import { LoggerService } from 'src/app/services/logger.service';
 import { MessageService } from 'src/app/services/message.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -22,15 +24,16 @@ export class HomeComponent implements OnInit, OnDestroy{
   admin: boolean = false;
 
 
-  test: Subscription|null = null; 
+  test: AvailObj = new AvailObj(); 
 
   constructor(
-    private logger: LoggerServices,
+    private logger: LoggerService,
     private msg: MessageService,
     private router: Router,
     private authentication: AuthenticationService,
-    private drServices: DoctorService,
-    private apptService: AppointmentsService
+    private apptService: AppointmentsService, 
+    private userService: UserService, 
+    private availTime: AvailTimeService
   ) { 
     //check if anyone is logged in and react when the user logs out
     this.authentication.currentUser.subscribe(
@@ -51,19 +54,26 @@ export class HomeComponent implements OnInit, OnDestroy{
         }
       }
     );
+//testing
+      
+      // this.availTime.createAvailTime(this.user.id, "time").pipe(take(1)).subscribe(res => {
+      //     console.log(res)
+      // }); 
 
-      // let dra = new DrAvailibilityObj(); 
+      // this.apptService.getApptsForDr(this.user).subscribe(res => {
+      //   console.log(res)
+      // })
+      
 
-      // dra.addAvailability(1, 8, 0, 12, 0); 
-      // dra.addAvailability(1, 13, 0, 17, 0); 
+      
 
-      // dra.addAvailability(2, 8, 0, 12, 0); 
-      // dra.addAvailability(2, 13, 0, 17, 0);
 
-    //testing
-    // this.drServices.createAvailableTime(this.user, dra).subscribe( res => {
-    //   console.log(res); 
-    // })
+    
+
+      
+
+
+    
 
     
 
@@ -72,7 +82,7 @@ export class HomeComponent implements OnInit, OnDestroy{
     
   }
   ngOnDestroy(): void {
-    this.test?.unsubscribe(); 
+    
   }
 
 
@@ -99,10 +109,3 @@ export class HomeComponent implements OnInit, OnDestroy{
 
   }
 
-
-  //test 
-
-  interface timeNode{
-    hours: number,
-    mins: number
-  }

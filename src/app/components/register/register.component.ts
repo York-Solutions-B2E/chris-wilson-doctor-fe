@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {FormControl, FormGroup, Validators, ReactiveFormsModule} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/models/User';
-import { LoggerServices } from 'src/app/services/Logger';
+import { LoggerService } from 'src/app/services/logger.service';
 import { UserService } from 'src/app/services/user.service';
 
 
@@ -27,7 +27,7 @@ export class RegisterComponent {
 
   constructor(
     private router: Router, 
-    private logger: LoggerServices, 
+    private logger: LoggerService, 
     private userService: UserService
     ){}
 

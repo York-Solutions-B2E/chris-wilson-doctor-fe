@@ -1,4 +1,4 @@
-
+//old idea didn't work 
 
 export class DrAvailibilityObj {
     days: object[][] = [];

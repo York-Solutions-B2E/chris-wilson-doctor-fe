@@ -1,14 +1,17 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Observable, Subject, take } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MessageService {
-
+export class MessageService implements OnDestroy {
+  
   subject: Subject<any> = new Subject(); 
 
   constructor() { }
+  ngOnDestroy(): void {
+    this.subject.unsubscribe(); 
+  }
 
   getMessage():Observable<any>{
     return this.subject.asObservable(); //creates an obserable 
@@ -25,4 +28,6 @@ export class MessageService {
   clear(){
     this.subject.next({});
   }
+
+
 }

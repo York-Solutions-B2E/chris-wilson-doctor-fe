@@ -1,57 +1,75 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, take } from 'rxjs';
 import { AppointmentObj } from '../models/Appointments';
+import { AvailObj } from '../models/AvailObj';
 import { DrAvailibilityObj } from '../models/DrAvailablity';
 import { User } from '../models/User';
-import { LoggerServices } from './Logger';
+import { LoggerService } from './logger.service';
+
 import { MessageService } from './message.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root' 
 })
 export class AppointmentsService {
-  baseURL = "http://localhost:3000";
+  baseURL = "http://localhost:3000/appointments";
 
   constructor(
-    private logger: LoggerServices,
+    private logger: LoggerService,
     private http: HttpClient,
     private msg: MessageService
   ) { }
 
+
+    
     //get appointments 
-    getApptForDr(doctor: User): Subject<any> {
+    getApptsForDr(doctor: User): Subject<any> {
       let observer = new Subject();
 
-      this.http.get<AppointmentObj[]>(`${this.baseURL}/appointments`).subscribe(res => {
-        let results: AppointmentObj[] = [];
-  
-        res.forEach(x => {
-          if (x.doctorID === doctor.id) {
-            results.push(x);
-          }
-        })
-  
-        observer.next(results)
+      this.http.get<AppointmentObj[]>(`${this.baseURL}`).pipe(take(1)).subscribe({
+        next: res => {
+          let results: AppointmentObj[] = [];
+    
+          res.forEach(x => {
+            if (x.doctorID === doctor.id) {
+              results.push(x);
+            }
+          })
+    
+          observer.next(results)
+        }, 
+
+        error: err => {
+          this.msg.error(`Can't get appointments`); 
+          this.logger.log(err.message)
+        }
       })
   
       return observer
   
     }
 
-    getApptForPatient(patient: User): Subject<any> {
+    getApptsForPatient(patientID: number): Subject<any> {
       let observer = new Subject();
 
-      this.http.get<AppointmentObj[]>(`${this.baseURL}/appointments`).subscribe(res => {
-        let results: AppointmentObj[] = [];
-  
-        res.forEach(x => {
-          if (x.patientID === patient.id) {
-            results.push(x);
-          }
-        })
-  
-        observer.next(results)
+      this.http.get<AppointmentObj[]>(`${this.baseURL}`).pipe(take(1)).subscribe({
+        next: res => {
+          let results: AppointmentObj[] = [];
+    
+          res.forEach(x => {
+            if (x.patientID === patientID) {
+              results.push(x);
+            }
+          })
+    
+          observer.next(results)
+        }, 
+
+        error: err => {
+          this.msg.error(`Can't get appointments`); 
+          this.logger.log(err.message)
+        }
       })
   
       return observer
@@ -60,21 +78,20 @@ export class AppointmentsService {
     
 
     //make appointments
-
-    createAppt(dr: User, patient: User, timeSlot: number): Subject<any>{
+    createAppt(drID: number, patientID: number, aTime: AvailObj): Subject<any>{
       let observer = new Subject();
 
-      this.http.post<any>(`${this.baseURL}/appointments`, {
-        doctorID: dr.id,
-        patientID: patient.id,
-        timeSlot: timeSlot,
+      this.http.post<AppointmentObj>(`${this.baseURL}`, {
+        doctorID: drID,
+        patientID: patientID,
+        aTime: aTime.id, 
         status: "pending"
-      }).subscribe({
+      }).pipe(take(1)).subscribe({
         next: res => {
           observer.next(res as AppointmentObj);
         },
         error: err => {
-          this.msg.error(err.message);
+          this.msg.error(`Can't create appointment`);
           this.logger.log(err.message);
           observer.next(false);
         }
@@ -88,7 +105,7 @@ export class AppointmentsService {
       let observer = new Subject();
 
 
-    this.http.delete<any>(`${this.baseURL}/appointments/${appt.id}`).subscribe({
+    this.http.delete<any>(`${this.baseURL}/${appt.id}`).pipe(take(1)).subscribe({
       next: response => {
         observer.next(true); 
       }, 
@@ -108,8 +125,9 @@ export class AppointmentsService {
       let observer = new Subject();
       appt.status = newStatus; 
 
-    this.http.put<any>(`${this.baseURL}/appointments/${appt.id}`, { ...appt }).subscribe({
+    this.http.put<any>(`${this.baseURL}/${appt.id}`, { ...appt }).pipe(take(1)).subscribe({
       next: response => {
+        this.logger.log(`appointment with id of ${appt.id} was changed to ${newStatus}`);
         observer.next(true); 
       }, 
       error: err => {

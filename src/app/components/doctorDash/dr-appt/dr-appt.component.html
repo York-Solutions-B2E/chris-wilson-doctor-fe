@@ -1,18 +1,14 @@
-<p>dr-appt works!</p>
-{{appt.status}}
+<div class="apptBox">
+    <div>
+        Patient Name: {{patient.firstName}} {{patient.lastName}} <br />
+        Status: {{appt.status}} <br />
+    </div>
 
-<div>
+    <button *ngIf="pending" (click)="cancelAppt()">
+        Deny
+    </button>
 
+    <button *ngIf="pending" (click)="confirmAppt()">
+        Confirm
+    </button>
 </div>
-
-<button *ngIf="pending"  (click)="cancelAppt()">
-    Deny
-</button>
-
-<button *ngIf="pending"  (click)="confirmAppt()">
-    Confirm
-</button>
-
-<button *ngIf="!pending"  (click)="setToPending()">
-    Change
-</button>
